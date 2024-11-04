@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" client="site" method="upgrade">
+    <name>test</name>
+    <author>Giovanni Iannaccone</author>
+    <version>1.0.0</version>
+    <files>
+        <filename>test.xml</filename>
+        <filename module="test">test/directory/main.php</filename>
+        <filename>helper.php</filename>
+        <filename>utils.php</filename>
+    </files>
+
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/mysql/install.sql</file>
+        </sql>
+    </install>
+
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/mysql/uninstall.sql</file>
+        </sql>
+    </uninstall>
+
+    <update>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/mysql/update.sql</file>
+        </sql>
+    </update>
+
+</extension>

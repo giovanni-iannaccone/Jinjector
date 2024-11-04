@@ -11,7 +11,7 @@ func TestFindModuleName(t *testing.T) {
 }
 
 func TestFindMainFileDirectory(t *testing.T) {
-	mainDirectory, _ := findMainFileDirectory("../test", "test_module")
+	mainDirectory, _ := findMainFileDirectory("../test", "test")
 	if mainDirectory != "test/directory/main.php" {
 		t.Fatalf("Finding module's main file => Failed: %s", mainDirectory)
 	}

