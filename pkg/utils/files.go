@@ -9,6 +9,7 @@ func AppendToFile(src string, dst string) error {
 	}
 
 	file.WriteString(src)
+	defer file.Close()
 	return nil
 }
 
