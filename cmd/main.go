@@ -22,6 +22,7 @@ func main() {
     var modulePath string
 
     utils.Print(data.Green, banner)
+    fmt.Println()
 
     utils.Print(data.Blue, "[+] Type your ip address => ")
     fmt.Scan(&ip)
@@ -36,8 +37,10 @@ func main() {
     
     err := internals.Inject(addr, modulePath)
     if err != nil {
-        utils.Print(data.Red, "[-] Error injecting backdoor")
+        utils.Print(data.Red, "[-] Error injecting backdoor: %s", err)
     } else {
         utils.Print(data.Green, "[+] Backdoor injected successfully")
     }
+
+    fmt.Println()
 }
