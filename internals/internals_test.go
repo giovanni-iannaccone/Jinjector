@@ -1,6 +1,18 @@
 package internals
 
-import "testing"
+import (
+	"testing"
+	"data"
+)
+
+func TestAddAddress(t *testing.T) {
+	var addr data.Address = data.Address{Ip: "10.10.10.10", Port: 5555}
+	var testFile string = "test"
+	addAddress(addr, &testFile)
+	if testFile == "$IP='10.10.10.10';$PORT=5555;test" {
+		t.Fatalf("Adding address => Failed %s", testFile)
+	}
+}
 
 func TestFindModuleName(t *testing.T) {
 	var path string = "test/module/name/fake_module_name"
