@@ -1,5 +1,7 @@
 ![Logo](https://github.com/user-attachments/assets/f72b05a4-e65d-4e34-ac12-b07e5f9d090e)
 
+( It's pronounced "J in jek′tər" - J injector )
+
 Jinjector is a powerful tool written in Go, designed to inject backdoors into Joomla modules effortlessly. Using this tool, you can easily insert a PHP reverse shell into a Joomla module's main file, allowing a connection back to a specified IP and port whenever the module is triggered. This is perfect for penetration testers or researchers aiming to simulate real-world scenarios.
 
 > [!CAUTION]
