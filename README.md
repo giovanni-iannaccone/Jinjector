@@ -1,4 +1,4 @@
-![Logo](https://github.com/user-attachments/assets/f72b05a4-e65d-4e34-ac12-b07e5f9d090e)
+<img src="https://github.com/user-attachments/assets/f72b05a4-e65d-4e34-ac12-b07e5f9d090e" alt="Logo"/>
 
 ( It's pronounced "J in jek′tər" - J injector )
 
@@ -29,6 +29,7 @@ go build -o jinjector
 ```
 
 ## 🚀 Usage
+<img src="https://github.com/user-attachments/assets/ddac7eea-03bf-457b-a42e-8abc44daf2f1" alt="Screenshot"/>
 Start the program, enter your ip, your port and the module path
 
 ## 🌍 How It Works 
