@@ -17,23 +17,20 @@ var banner string = `
 `
 
 func main() {
-    var port uint16
-    var ip string
+    var addr data.Address
     var modulePath string
 
     utils.Print(data.Green, banner)
     fmt.Println()
 
     utils.Print(data.Blue, "[+] Type your ip address => ")
-    fmt.Scan(&ip)
+    fmt.Scan(&addr.Ip)
 
     utils.Print(data.Blue, "[+] Type your port => ")
-    fmt.Scan(&port)
+    fmt.Scan(&addr.Port)
 
     utils.Print(data.Blue, "[+] Type the path to your decompressed Joomla module => ")
     fmt.Scan(&modulePath)
-
-    addr := data.Address{Ip: ip, Port: port}
     
     err := internals.Inject(addr, modulePath)
     if err != nil {
