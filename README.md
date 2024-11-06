@@ -37,7 +37,8 @@ Start the program, enter your ip, your port and the module path
 **Connection Setup**: Every time the infected Joomla module is used, it attempts to establish a connection to your IP and port.
 
 ## ⚡️ Reverse Shell Code
-The reverse shell code injected is a simple PHP payload, designed to open a connection to the specified IP and port. You can modify the payload if needed for specific testing purposes (backdoor.php file)
+The reverse shell code injected is just a proof of concept, designed to open a connection to the specified IP and port. You can modify the payload if needed for specific testing purposes (backdoor.php file)
+I used the <a href="https://github.com/pentestmonkey/php-reverse-shell">pentestmonkey php reverse shell</a> 
 
 ## 🧩 Contributing
 We welcome contributions! Please follow these steps:
