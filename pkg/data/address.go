@@ -2,5 +2,5 @@ package data
 
 type Address struct {
 	Ip string
-	Port uint16
+	Port int
 }

