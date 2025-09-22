@@ -19,7 +19,7 @@ func main() {
 
     flag.StringVar(&addr.Ip, "ip", "", "your ip address")
     flag.IntVar(&addr.Port, "port", 0, "your port")
-    flag.StringVar(&modulePath, "path", "", "path to your decompressed Joomla module")
+    flag.StringVar(&modulePath, "module", "", "path to your decompressed Joomla module")
     flag.StringVar(&backdoorPath, "backdoor", "./backdoor.php", "path to backdoor file")
     flag.Parse()
     
